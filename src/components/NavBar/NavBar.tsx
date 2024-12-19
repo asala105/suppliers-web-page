@@ -1,9 +1,12 @@
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 import Logo from "../../assets/logo-white.png";
-import { Box } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 
 export function NavBar() {
+  const theme = useTheme();
+  const isPhoneSize = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Box
       m={0}
@@ -13,16 +16,15 @@ export function NavBar() {
         display: "flex",
         position: "absolute",
         top: 0,
-        justifyContent: "space-between",
       }}
-      alignItems="center"
-      justifyContent="space-between"
+      alignItems={"center"}
+      justifyContent={isPhoneSize ? "flex-start" : "space-between"}
       height="15vh"
       width="100vw"
       bgcolor="rgb(27, 117, 183)"
     >
-      <img src={Logo} height="80vh" alt="logo" />
-      <Box mr={5} alignItems="center">
+      <img src={Logo} height={isPhoneSize ? "60vh" : "80vh"} alt="logo" />
+      <Box alignSelf={"center"} mr={5} ml={5} alignItems="center">
         <Breadcrumbs aria-label="breadcrumb">
           <Link
             sx={{
