@@ -28,16 +28,16 @@ export function SuppliersTable() {
   );
 
   const SupliersMockupData = [
-    { id: 1, name: "Fmxsgdz", vatNumber: "17304559" },
-    { id: 2, name: "Fxgftpl", vatNumber: "11041001" },
-    { id: 3, name: "Habwxwp", vatNumber: "47702457" },
-    { id: 4, name: "Hmrximi", vatNumber: "51369881" },
-    { id: 5, name: "Ngdusbu", vatNumber: "39895477" },
-    { id: 6, name: "Qhgwdax", vatNumber: "93590711" },
-    { id: 7, name: "Gurbqeg", vatNumber: "20888744" },
-    { id: 8, name: "Npejabt", vatNumber: "39453849" },
-    { id: 9, name: "Hpyuzan", vatNumber: "18528335" },
-    { id: 10, name: "Plelsfx", vatNumber: "52163951" },
+    { id: "1", name: "Fmxsgdz", vatNumber: "17304559" },
+    { id: "2", name: "Fxgftpl", vatNumber: "11041001" },
+    { id: "3", name: "Habwxwp", vatNumber: "47702457" },
+    { id: "4", name: "Hmrximi", vatNumber: "51369881" },
+    { id: "5", name: "Ngdusbu", vatNumber: "39895477" },
+    { id: "6", name: "Qhgwdax", vatNumber: "93590711" },
+    { id: "7", name: "Gurbqeg", vatNumber: "20888744" },
+    { id: "8", name: "Npejabt", vatNumber: "39453849" },
+    { id: "9", name: "Hpyuzan", vatNumber: "18528335" },
+    { id: "10", name: "Plelsfx", vatNumber: "52163951" },
   ];
 
   return (
