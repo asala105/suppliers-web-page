@@ -4,14 +4,16 @@ import { SuppliersTable } from "../../components";
 export function SuppliersPage() {
   return (
     <Box
+      display="flex"
       alignItems="center"
       justifyContent="center"
-      textAlign={"center"}
+      textAlign="center"
       width="100vw"
       mt={10}
-      pt={10}
     >
-      <SuppliersTable />
+      <Box width={"80vw"}>
+        <SuppliersTable />
+      </Box>
     </Box>
   );
 }
