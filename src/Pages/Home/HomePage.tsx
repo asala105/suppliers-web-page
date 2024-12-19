@@ -5,8 +5,8 @@ export function HomePage() {
     <Box
       alignItems="center"
       justifyContent="center"
-      display="flex"
       height="100vh"
+      width="100vw"
       alignContent="center"
     >
       <Typography variant="h1" component="h2" textAlign="center">
