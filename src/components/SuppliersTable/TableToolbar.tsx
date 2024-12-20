@@ -5,17 +5,19 @@ import {
   Menu,
   MenuItem,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import SortRoundedIcon from "@mui/icons-material/SortRounded";
-import AddIcon from "@mui/icons-material/Add";
 import React, { useState } from "react";
+import { AddSupplierDialog } from "../Dialog/AddSupplierDialog";
 
 export function TableToolbar() {
+  const theme = useTheme();
+  const isPhoneSize = useMediaQuery(theme.breakpoints.down("sm"));
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const handleClickOpen = () => {
-    alert("Add Supplier button clicked");
-  };
   const handleClickSortButton = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
@@ -27,9 +29,9 @@ export function TableToolbar() {
   return (
     <Box
       display="flex"
-      flexDirection="row"
+      flexDirection={isPhoneSize ? "column" : "row"}
       mt={10}
-      p={5}
+      p={2}
       maxWidth="80vw"
       justifyContent={"space-between"}
     >
@@ -39,15 +41,7 @@ export function TableToolbar() {
         </Typography>
       </Box>
       <Box display="flex" flexDirection="row" alignItems="center">
-        <Button
-          variant="contained"
-          color="primary"
-          size="medium"
-          startIcon={<AddIcon />}
-          onClick={handleClickOpen}
-        >
-          Add Supplier
-        </Button>
+        <AddSupplierDialog />
         <IconButton
           aria-label="edit"
           size="small"
