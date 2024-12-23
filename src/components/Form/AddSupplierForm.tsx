@@ -1,14 +1,13 @@
 import { Box } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { UseFormRegister, FieldErrors } from "react-hook-form";
-import { EditSupplierInput, AddSupplierInput } from "../../common/type";
+import { useFormContext } from "react-hook-form";
+import { AddSupplierInput, EditSupplierInput, Supplier } from "../../common/type";
 
-interface AddSupplierFormProps {
-  register: UseFormRegister<EditSupplierInput | AddSupplierInput>;
-  errors: FieldErrors<EditSupplierInput | AddSupplierInput>;
-}
-
-export function AddSupplierForm({ register, errors }: AddSupplierFormProps) {
+export function AddSupplierForm() {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<Supplier | AddSupplierInput>();
   return (
     <Box display={"flex"} flexDirection={"column"} gap={2} p={2}>
       <TextField

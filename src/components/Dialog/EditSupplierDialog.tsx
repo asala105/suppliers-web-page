@@ -31,13 +31,13 @@ export function EditSupplierDialog({ supplier }: EditSupplierDialogProps) {
     register,
     formState: { errors },
     reset,
-  } = useForm<EditSupplierInput>({
+  } = useForm<Supplier>({
     mode: "all",
     resolver: yupResolver(schema),
     defaultValues: supplier,
   });
 
-  const onSubmit = (data: EditSupplierInput) => console.log(data);
+  const onSubmit = (data: Supplier) => console.log(data);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -75,7 +75,7 @@ export function EditSupplierDialog({ supplier }: EditSupplierDialogProps) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogTitle>Edit Supplier</DialogTitle>
           <DialogContent>
-            <AddSupplierForm register={register} errors={errors} />
+            <AddSupplierForm />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
