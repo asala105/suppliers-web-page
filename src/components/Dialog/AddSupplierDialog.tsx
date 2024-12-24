@@ -8,6 +8,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { Fragment, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import { addSupplier } from "../../API/addSupplier";
 import { AddSupplierInput } from "../../common/type";
 import { AddSupplierForm } from "../Form";
 
@@ -20,11 +21,22 @@ const schema = yup.object().shape({
 });
 
 export function AddSupplierDialog() {
-  const { handleSubmit, reset } = useForm<AddSupplierInput>({
+  const {
+    register,
+    reset,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<AddSupplierInput>({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: AddSupplierInput) => console.log(data);
+  const onSubmit = async (data: AddSupplierInput) => {
+    console.log(data);
+    const response = await addSupplier(data);
+
+    console.log(data);
+  };
+
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -54,16 +66,16 @@ export function AddSupplierDialog() {
           component: "form",
         }}
       >
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <DialogTitle>Add Supplier</DialogTitle>
-          <DialogContent>
-            <AddSupplierForm />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button type="submit">Save</Button>
-          </DialogActions>
-        </form>
+        <DialogTitle>Add Supplier</DialogTitle>
+        <DialogContent>
+          <AddSupplierForm register={register} errors={errors} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button type="submit" onClick={handleSubmit(onSubmit)}>
+            Save
+          </Button>
+        </DialogActions>
       </Dialog>
     </Fragment>
   );

@@ -1,16 +1,19 @@
+import { TablePagination } from "@mui/material";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
-import Paper from "@mui/material/Paper";
-import { TableHeader } from "./TableHeader";
+import React, { useCallback, useEffect, useState } from "react";
+import { getSuppliers } from "../../API/getSuppliers";
 import { SupplierTableRow } from "./SupplierTableRow";
-import { TablePagination } from "@mui/material";
-import React, { useState, useCallback } from "react";
+import { TableHeader } from "./TableHeader";
 import { TableToolbar } from "./TableToolbar";
+import { Supplier } from "../../common/type";
 
 export function SuppliersTable() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [suppliers, setSuppliers] = useState<Supplier[]>([]);
 
   const handleChangePage = useCallback(
     (event: React.MouseEvent<HTMLButtonElement> | null, newPage: number) => {
@@ -27,18 +30,13 @@ export function SuppliersTable() {
     []
   );
 
-  const SupliersMockupData = [
-    { id: "1", name: "Fmxsgdz", vatNumber: "17304559" },
-    { id: "2", name: "Fxgftpl", vatNumber: "11041001" },
-    { id: "3", name: "Habwxwp", vatNumber: "47702457" },
-    { id: "4", name: "Hmrximi", vatNumber: "51369881" },
-    { id: "5", name: "Ngdusbu", vatNumber: "39895477" },
-    { id: "6", name: "Qhgwdax", vatNumber: "93590711" },
-    { id: "7", name: "Gurbqeg", vatNumber: "20888744" },
-    { id: "8", name: "Npejabt", vatNumber: "39453849" },
-    { id: "9", name: "Hpyuzan", vatNumber: "18528335" },
-    { id: "10", name: "Plelsfx", vatNumber: "52163951" },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      const suppliers = await getSuppliers();
+      setSuppliers(suppliers);
+    };
+    fetchData();
+  }, []);
 
   return (
     <TableContainer component={Paper}>
@@ -49,7 +47,7 @@ export function SuppliersTable() {
       >
         <TableHeader />
         <TableBody>
-          {SupliersMockupData.map((row) => (
+          {suppliers.map((row) => (
             <SupplierTableRow key={row.id} supplier={row} />
           ))}
         </TableBody>
@@ -57,7 +55,7 @@ export function SuppliersTable() {
       <TablePagination
         rowsPerPageOptions={[5, 10, 25]}
         component="div"
-        count={SupliersMockupData.length}
+        count={suppliers.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

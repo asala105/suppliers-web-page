@@ -9,5 +9,6 @@ export async function getSuppliers() {
     return response.data as Supplier[];
   } catch (e) {
     console.log(e);
+    return [];
   }
 }
