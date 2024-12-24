@@ -5,8 +5,8 @@ const config: Config = {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
-    '\\.(gif|ttf|eot|svg|png)$': "./src/__mocks__/fileMock.ts",
-    '^@/(.*)$': './src/$1',
+    '\\.(gif|ttf|eot|svg|png)$': "src/__mocks__/fileMock.ts",
+    '^@/(.*)$': 'src/$1',
   },
   setupFilesAfterEnv: ['./jest.setup.ts'],
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],

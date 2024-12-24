@@ -1,6 +1,6 @@
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
-import Logo from "src/assets/logo-white.png";
+import Logo from "../../assets/logo-white.png";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 
 export function NavBar() {
