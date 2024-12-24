@@ -1,50 +1,80 @@
-# React + TypeScript + Vite
+# Workpacks Suppliers
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Workpacks Suppliers is a web application for managing suppliers. It allows users to add, update, delete, and view suppliers. The application is built using React, TypeScript, and Material-UI, and it uses Axios for making API requests.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Add new suppliers
+- Update existing suppliers
+- Delete suppliers
+- View a list of suppliers
+- Responsive design
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React
+- TypeScript
+- Material-UI
+- Axios
+- React Hook Form
+- Yup
+- Notistack
 
-- Configure the top-level `parserOptions` property like this:
+## Prerequisites
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Before you begin, ensure you have met the following requirements:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- Node.js (v14 or higher)
+- npm or yarn
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Getting Started
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+To get a local copy up and running, follow these steps:
+
+### Installation
+
+1. Clone the repository:
+
+   ```sh
+   git clone https://github.com/your-username/workpacks-suppliers.git
+
+2. Navigate to the project directory:
+
+   ```sh
+   cd workpacks-suppliers
+
+3. Install the dependencies:
+
+   ```sh
+   npm install
+   or 
+   yarn install
+
+### Running the Application
+
+1. start the development server:
+
+   ```sh
+   npm run dev
+   or
+   yarn dev
+
+2. Open your browser and navigate to ```http://localhost:3000``` to see the application in action.
+
+### Running Tests
+- To run the tests, use the following command:
+
+   ```sh
+   npm test
+   or
+   yarn test
+
+### Building for Production
+- To build the application for production, use the following command:
+
+   ```sh
+   npm run build
+   or
+   yarn build
+
+The production-ready files will be in the ```dist``` directory.
