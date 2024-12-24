@@ -1,6 +1,7 @@
-import { IconButton, TableCell, TableRow } from "@mui/material";
-import { Supplier } from "../../common/type";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { IconButton, TableCell, TableRow } from "@mui/material";
+import { deleteSupplier } from "../../API/deleteSupplier";
+import { Supplier } from "../../common/type";
 import { EditSupplierDialog } from "../Dialog/EditSupplierDialog";
 
 interface TableRowProps {
@@ -8,6 +9,12 @@ interface TableRowProps {
 }
 
 export function SupplierTableRow({ supplier }: TableRowProps) {
+  const handleDelete = () => {
+    const confirmed = confirm("Are you sure you want to verify this address?");
+    if (confirmed) {
+      deleteSupplier(supplier.id);
+    }
+  };
   return (
     <TableRow
       key={supplier.id}
@@ -19,7 +26,7 @@ export function SupplierTableRow({ supplier }: TableRowProps) {
       <TableCell align="right">{supplier.vatNumber}</TableCell>
       <TableCell align="right">
         <EditSupplierDialog supplier={supplier} />
-        <IconButton aria-label="delete" size="small">
+        <IconButton aria-label="delete" size="small" onClick={handleDelete}>
           <DeleteIcon fontSize="inherit" />
         </IconButton>
       </TableCell>
