@@ -1,4 +1,4 @@
-# Workpacks Suppliers
+# Suppliers Web Page
 
 Workpacks Suppliers is a web application for managing suppliers. It allows users to add, update, delete, and view suppliers. The application is built using React, TypeScript, and Material-UI, and it uses Axios for making API requests.
 
