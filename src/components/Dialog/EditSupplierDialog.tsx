@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { EditSupplierInput, Supplier } from "../../common/type";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IconButton } from "@mui/material";
+import { updateSupplier } from "../../API";
 
 const schema = yup.object().shape({
   id: yup.string().required("ID is required"),
@@ -31,13 +32,17 @@ export function EditSupplierDialog({ supplier }: EditSupplierDialogProps) {
     register,
     formState: { errors },
     reset,
-  } = useForm<Supplier>({
+  } = useForm<EditSupplierInput>({
     mode: "all",
     resolver: yupResolver(schema),
-    defaultValues: supplier,
+    defaultValues: supplier as EditSupplierInput,
   });
 
-  const onSubmit = (data: Supplier) => console.log(data);
+  const onSubmit = async (data: EditSupplierInput) => {
+    console.log(data);
+    const response = await updateSupplier(data);
+    handleClose();
+  };
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -57,31 +62,17 @@ export function EditSupplierDialog({ supplier }: EditSupplierDialogProps) {
       <IconButton aria-label="edit" size="small" onClick={handleClickOpen}>
         <EditIcon fontSize="inherit" />
       </IconButton>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        PaperProps={{
-          component: "form",
-          onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries((formData as any).entries());
-            const email = formJson.email;
-            console.log(email);
-            handleClose();
-          },
-        }}
-      >
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <DialogTitle>Edit Supplier</DialogTitle>
-          <DialogContent>
-            <AddSupplierForm />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button type="submit">Save</Button>
-          </DialogActions>
-        </form>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Edit Supplier</DialogTitle>
+        <DialogContent>
+          <AddSupplierForm register={register} errors={errors} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button type="submit" onClick={handleSubmit(onSubmit)}>
+            Save
+          </Button>
+        </DialogActions>
       </Dialog>
     </React.Fragment>
   );

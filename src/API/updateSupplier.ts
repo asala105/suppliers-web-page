@@ -6,11 +6,7 @@ const backend_url = Config.BACKEND_URL;
 export async function updateSupplier(data: EditSupplierInput) {
   try {
     const response = await axios.post(`${backend_url}/update-supplier`, {
-      id: data.id,
-      data: {
-        name: data.name,
-        vatNumber: data.vatNumber,
-      },
+      data
     });
     return response.data as Supplier[];
   } catch (e) {
